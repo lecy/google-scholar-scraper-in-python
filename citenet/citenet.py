@@ -1204,7 +1204,18 @@ class Citenet(QObject):
         self.change_status('Idle')
 
         # change to home directory (My Documents)
-        os.chdir(os.path.expanduser("~"))
+        try:
+            import ctypes.wintypes
+            CSIDL_PERSONAL = 5       # My Documents
+            SHGFP_TYPE_CURRENT = 1   # Get current, not default value
+
+            buf = ctypes.create_unicode_buffer(ctypes.wintypes.MAX_PATH)
+            ctypes.windll.shell32.SHGetFolderPathW(None, CSIDL_PERSONAL, None,
+                                                   SHGFP_TYPE_CURRENT, buf)
+            current_dir = buf.value
+        except:
+            current_dir = os.path.expanduser('~')
+        os.chdir(current_dir)
 
         # database
         self.dbcon = None
