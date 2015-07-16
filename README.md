@@ -65,6 +65,7 @@ python scholar.py
 This application interacts with Google Scholar, performing a series of queries in order to retrieve the publications and related information. **It is the user's sole responsability to ensure that their usage conforms to Google Scholar Terms of Service** and within their acceptable policy and usage limits.
 
 ## Changelog
+* 1.6.1 (2015-07-16) - Bugfix release (new Scholar settings page, sqlite path defaults to "My Documents")
 * 1.6 (2015-05-28) - Initial public release
 
 ## License
