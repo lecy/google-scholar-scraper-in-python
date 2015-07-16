@@ -50,6 +50,7 @@ from PySide.QtWebKit import QWebView
 
 logger = logging.getLogger('main')
 
+
 class QTLogHandler(logging.Handler):
     '''
     Logging handler that outputs to a QTextEdit widget
@@ -70,7 +71,8 @@ class QTLogHandler(logging.Handler):
             raise
         except:
             self.handleError(record)
-            
+
+
 class DBConnection(object):
     '''
     Database connection to a SQLite file
@@ -346,10 +348,7 @@ class Citenet(QObject):
             if not ls is None:
                 for l in ls:
                     self.df.edtOut.append(l)
-    
-    def test(self):
-        print ("test")
-    
+
     def goto_0_from_3(self):
         self.win0.move(self.win3.x(), self.win3.y())
         self.win3.hide()
@@ -1033,7 +1032,7 @@ class Citenet(QObject):
             elif self.ss == "stage1":
                 self.change_status('Retrieving seed articles')
                 self.vw.page().mainFrame().evaluateJavaScript("var ch=document.getElementById(\"scis1\");ch.checked=true;")
-                self.vw.page().mainFrame().evaluateJavaScript("var e=document.getElementsByTagName(\"button\");for (var i = 0; i<e.length;i++){if(e[i].getAttribute(\"class\").indexOf(\"gs_btn_act\") != -1){e[i].click();break;}}")
+                self.vw.page().mainFrame().evaluateJavaScript("var e=document.getElementsByTagName(\"button\");for (var i = 0; i<e.length;i++){if ((e[i].getAttribute(\"class\").indexOf(\"gs_btn_act\") != -1) && (e[i].getAttribute(\"name\") == \"save\")){e[i].click();break;}}")
                 self.ss = "stage2"
             elif self.ss == "stage2":
                 self.change_status('Collecting data')
